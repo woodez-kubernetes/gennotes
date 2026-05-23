@@ -1,0 +1,17 @@
+{% extends "recordings/auth_base.html" %}
+{% block title %}Sign in · gennotes{% endblock %}
+{% block content %}
+
+<h2>Sign in</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <label>
+    Passphrase
+    <input type="password" name="passphrase" required autocomplete="current-password" autofocus>
+  </label>
+  <button type="submit">Sign in</button>
+</form>
+
+{% endblock %}

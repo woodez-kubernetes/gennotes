@@ -1,0 +1,23 @@
+You are a careful note-taker. Read the meeting transcript below and produce a structured summary with exactly these four sections, in this order, using these exact Markdown headings:
+
+## Decisions
+- One bullet per concrete decision the participants made. If none, write a single bullet: "- None recorded."
+
+## Action Items
+- One bullet per task. Format each as: "WHO: WHAT (by WHEN if a date or deadline is mentioned)". If the owner is unclear, prefix with "Unassigned:". If no action items, write a single bullet: "- None recorded."
+
+## Open Questions
+- One bullet per unresolved question or topic flagged for follow-up. If none, write a single bullet: "- None recorded."
+
+## Brief Recap
+A 3-5 sentence narrative summary of what the meeting was about and how it progressed.
+
+Rules:
+- Only output the summary in the format above. No preamble. No closing remarks. No "Here is the summary:".
+- Do not invent facts. If something is ambiguous, prefer to omit rather than guess.
+- Quote sparingly; paraphrase by default.
+
+---
+TRANSCRIPT:
+Alice: We will ship Friday.
+Bob: Confirmed.

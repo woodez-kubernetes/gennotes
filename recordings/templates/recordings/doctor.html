@@ -1,0 +1,25 @@
+{% extends "recordings/base.html" %}
+{% block title %}System check · gennotes{% endblock %}
+{% block content %}
+
+<h2>System check</h2>
+{% if ready %}
+  <p><span class="badge badge-done">Ready</span> All dependencies present.</p>
+{% else %}
+  <p><span class="badge badge-failed">Not ready</span> Install the missing pieces below.</p>
+{% endif %}
+
+<table>
+  <thead><tr><th>Check</th><th>Status</th><th>Detail</th></tr></thead>
+  <tbody>
+  {% for c in checks %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{% if c.passed %}<span class="badge badge-done">OK</span>{% else %}<span class="badge badge-failed">missing</span>{% endif %}</td>
+      <td class="mono">{{ c.detail }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

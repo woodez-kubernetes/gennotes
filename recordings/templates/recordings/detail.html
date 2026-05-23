@@ -1,0 +1,74 @@
+{% extends "recordings/base.html" %}
+{% load static %}
+{% block title %}{{ recording.original_filename }} · gennotes{% endblock %}
+{% block content %}
+
+<p><a href="{% url 'recording-list' %}">← All recordings</a></p>
+
+<h2>{{ recording.original_filename }}</h2>
+
+<table style="max-width: 540px;">
+  <tr><th>Status</th>
+      <td><div data-poll-url="{% url 'recording-status' recording.id %}">{% include "recordings/_status.html" %}</div></td></tr>
+  <tr><th>Duration</th>
+      <td>{% if recording.duration_seconds %}{{ recording.duration_seconds|floatformat:1 }} s{% else %}—{% endif %}</td></tr>
+  <tr><th>Size</th><td>{{ recording.size_bytes|filesizeformat }}</td></tr>
+  <tr><th>SHA-256</th><td class="mono">{{ recording.sha256 }}</td></tr>
+  <tr><th>Uploaded</th><td>{{ recording.created_at|date:"Y-m-d H:i:s" }}</td></tr>
+</table>
+
+<div class="actions-row">
+  {% if recording.state == "failed" or recording.state == "transcribing" or recording.state == "summarizing" %}
+  <form method="post" action="{% url 'recording-retry' recording.id %}">
+    {% csrf_token %}
+    <button class="secondary" type="submit">Retry</button>
+  </form>
+  {% endif %}
+  <form method="get" action="{% url 'recording-export' recording.id %}">
+    <button type="submit">Export .zip</button>
+  </form>
+  <form method="post" action="{% url 'recording-delete' recording.id %}" data-confirm="Delete this recording, transcript, and summary permanently?">
+    {% csrf_token %}
+    <button class="danger" type="submit">Delete</button>
+  </form>
+</div>
+
+{% if summary %}
+  <h2>Summary
+    <span class="muted" style="font-size:0.8rem;font-weight:normal;">
+      ({{ summary.model_name }} · prompt {{ summary.prompt_version }} · {{ summary.created_at|date:"Y-m-d H:i" }})
+    </span>
+  </h2>
+  <div class="summary">{{ summary.text|linebreaks }}</div>
+  <form method="post" action="{% url 'recording-resummarize' recording.id %}" style="margin-top:0.75rem;">
+    {% csrf_token %}
+    <button class="secondary" type="submit">Re-summarize</button>
+  </form>
+{% elif recording.state == "summarizing" %}
+  <p class="muted">Summarizing…</p>
+{% endif %}
+
+{% if transcript %}
+  <h2>Transcript
+    <span class="muted" style="font-size:0.8rem;font-weight:normal;">
+      ({{ transcript.engine }} · {{ transcript.model_name }}{% if transcript.language %} · {{ transcript.language }}{% endif %})
+    </span>
+  </h2>
+
+  {% if transcript.segments %}
+    <pre class="transcript">{% for s in transcript.segments %}<span class="segment-time">[{{ s.start|floatformat:1 }}–{{ s.end|floatformat:1 }}]</span> {{ s.text }}
+{% endfor %}</pre>
+  {% else %}
+    <pre class="transcript">{{ transcript.text }}</pre>
+  {% endif %}
+{% elif recording.state != "failed" %}
+  <p class="muted">Transcript will appear here once processing finishes.</p>
+{% endif %}
+
+{% endblock %}
+{% block scripts %}
+{% if not recording.is_terminal %}
+  <script src="{% static 'gennotes/poll.js' %}" defer></script>
+{% endif %}
+<script src="{% static 'gennotes/confirm.js' %}" defer></script>
+{% endblock %}

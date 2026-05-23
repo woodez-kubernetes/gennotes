@@ -1,0 +1,29 @@
+You are a careful note-taker. Below are 2 partial summaries, each covering a different chunk of the same meeting in order. Merge them into a single, unified summary using exactly these four sections, in this order, with these exact Markdown headings:
+
+## Decisions
+- Deduplicate. Preserve only concrete decisions. If none across all chunks, write "- None recorded."
+
+## Action Items
+- Deduplicate. Format: "WHO: WHAT (by WHEN if mentioned)". If owner unclear: "Unassigned:". If none, "- None recorded."
+
+## Open Questions
+- Deduplicate. If none, "- None recorded."
+
+## Brief Recap
+A 3-5 sentence narrative covering the whole meeting based on all the chunks.
+
+Rules:
+- Only output the four sections. No preamble. No mention of chunks.
+- Do not invent facts. If something only appears in one chunk, still include it (unless trivial); just do not embellish.
+
+---
+PARTIAL SUMMARIES (in chunk order):
+### Partial 1
+## Decisions
+- Ship Friday.
+
+---
+
+### Partial 2
+## Decisions
+- None recorded in this chunk.

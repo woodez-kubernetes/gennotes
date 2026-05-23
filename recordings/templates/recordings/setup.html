@@ -1,0 +1,25 @@
+{% extends "recordings/auth_base.html" %}
+{% block title %}Setup · gennotes{% endblock %}
+{% block content %}
+
+<h2>Set a passphrase</h2>
+<p class="muted">
+  This is a single-user app. The passphrase below protects local access to
+  your transcripts and summaries. It is hashed with Argon2 and never leaves
+  this machine.
+</p>
+
+<form method="post">
+  {% csrf_token %}
+  <label>
+    Passphrase (min {{ min_length }} characters)
+    <input type="password" name="passphrase" required autocomplete="new-password" autofocus minlength="{{ min_length }}">
+  </label>
+  <label>
+    Confirm
+    <input type="password" name="confirm" required autocomplete="new-password" minlength="{{ min_length }}">
+  </label>
+  <button type="submit">Create account</button>
+</form>
+
+{% endblock %}
