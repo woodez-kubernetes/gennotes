@@ -1,0 +1,32 @@
+{% extends "recordings/base.html" %}
+{% block title %}Audit log · gennotes{% endblock %}
+{% block content %}
+
+<h2>Audit log <span class="muted" style="font-size:0.85rem;font-weight:normal;">last 500 events</span></h2>
+
+{% if events %}
+<table class="audit-table">
+  <thead>
+    <tr><th>When</th><th>Event</th><th>Fields</th></tr>
+  </thead>
+  <tbody>
+  {% for e in events %}
+    <tr>
+      <td class="mono">{{ e.ts }}</td>
+      <td class="event">{{ e.event }}</td>
+      <td class="mono">{% for k, v in e.items %}{% if k != "ts" and k != "event" %}{{ k }}={{ v }} {% endif %}{% endfor %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p class="muted">No events recorded yet.</p>
+{% endif %}
+
+<form method="post" action="{% url 'audit-log-truncate' %}" style="margin-top:1.5rem;" data-confirm="Erase the audit log? This cannot be undone.">
+  {% csrf_token %}
+  <button class="danger" type="submit">Clear audit log</button>
+</form>
+
+{% endblock %}
+{% block scripts %}{% load static %}<script src="{% static 'gennotes/confirm.js' %}" defer></script>{% endblock %}

@@ -1,0 +1,22 @@
+You are a careful note-taker. You will receive ONE CHUNK (part 2 of 3) of a longer meeting transcript. Extract notes from THIS CHUNK ONLY using exactly these four sections, in this order, with these exact Markdown headings:
+
+## Decisions
+- One bullet per concrete decision visible in this chunk. If none, write "- None recorded in this chunk."
+
+## Action Items
+- One bullet per task. Format: "WHO: WHAT (by WHEN if mentioned)". If owner unclear: "Unassigned:". If none, "- None recorded in this chunk."
+
+## Open Questions
+- One bullet per unresolved question raised in this chunk. If none, "- None recorded in this chunk."
+
+## Brief Recap
+2-3 sentences on what THIS CHUNK covers. Do not speculate about other chunks.
+
+Rules:
+- Only output the four sections. No preamble.
+- Do not invent facts. Omit rather than guess.
+- This is a partial view; another step will combine it with the other chunks.
+
+---
+TRANSCRIPT CHUNK 2 of 3:
+Alice: We can ship by Friday.

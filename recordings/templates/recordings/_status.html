@@ -1,0 +1,4 @@
+<span class="badge badge-{{ recording.state }}">{{ recording.get_state_display }}</span>
+{% if recording.error_message %}
+  <div class="msg error mono" style="margin-top:0.75rem;">{{ recording.error_message }}</div>
+{% endif %}

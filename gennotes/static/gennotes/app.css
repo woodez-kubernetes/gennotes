@@ -1,0 +1,59 @@
+/* gennotes — single-stylesheet for the whole app. */
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 920px;
+       margin: 2rem auto; padding: 0 1.5rem; color: #222; line-height: 1.45; }
+body.auth { max-width: 420px; margin-top: 6rem; }
+header { display: flex; justify-content: space-between; align-items: baseline;
+         border-bottom: 1px solid #eee; padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
+header h1 { margin: 0; font-size: 1.5rem; }
+header h1 a { text-decoration: none; color: #222; }
+header nav a, header nav form { margin-left: 1rem; }
+header nav a { color: #444; text-decoration: none; font-size: 0.95rem; }
+header nav a:hover { color: #126b1c; }
+header nav form { display: inline; }
+header nav button.linkish { background: none; border: 0; color: #444; cursor: pointer;
+                            font-size: 0.95rem; padding: 0; }
+header nav button.linkish:hover { color: #8b1a13; }
+h2 { margin-top: 2rem; }
+label { display: block; margin: 0.75rem 0; }
+input[type="password"], input[type="text"], input[type="file"] {
+  display: block; padding: 0.45rem 0.6rem; font-size: 1rem;
+  border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box;
+}
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid #eee; }
+th { background: #fafafa; font-size: 0.85rem; text-transform: uppercase; color: #666; }
+.messages { margin: 1rem 0; }
+.msg { padding: 0.5rem 0.75rem; border-radius: 4px; margin-bottom: 0.4rem; font-size: 0.9rem; }
+.msg.error { background: #fdecea; color: #8b1a13; }
+.msg.info { background: #e7f1fb; color: #134a8b; }
+.msg.warning { background: #fff7e1; color: #8b6213; }
+.msg.success { background: #e7f6e9; color: #126b1c; }
+.badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px;
+         font-size: 0.78rem; font-weight: 600; }
+.badge-uploaded { background: #eee; color: #555; }
+.badge-transcribing, .badge-summarizing { background: #fff4cc; color: #8a6d00; }
+.badge-transcribed, .badge-done { background: #e7f6e9; color: #126b1c; }
+.badge-failed { background: #fdecea; color: #8b1a13; }
+.muted { color: #888; font-size: 0.9rem; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; }
+form.upload { border: 2px dashed #ccc; padding: 1.5rem; border-radius: 8px;
+              text-align: center; background: #fafafa; }
+form.upload input[type=file] { margin: 0 auto 0.75rem; max-width: 360px; }
+button, input[type=submit] { background: #126b1c; color: white; border: 0;
+                             padding: 0.5rem 1rem; border-radius: 4px;
+                             font-size: 0.9rem; cursor: pointer; }
+button:hover, input[type=submit]:hover { background: #0e591a; }
+button.secondary { background: #555; }
+button.secondary:hover { background: #333; }
+button.danger { background: #8b1a13; }
+button.danger:hover { background: #6c100b; }
+pre.transcript { background: #fafafa; padding: 1rem; border-radius: 4px;
+                 white-space: pre-wrap; line-height: 1.5; font-size: 0.92rem; }
+.segment-time { color: #888; }
+details { margin-top: 1rem; }
+.summary { background: #fafdff; padding: 0.5rem 1rem; border-radius: 4px;
+           border: 1px solid #e3eef5; }
+.actions-row { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+.actions-row form { display: inline; }
+.audit-table td { font-size: 0.85rem; }
+.audit-table td.event { font-weight: 600; }
